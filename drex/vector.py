@@ -3,7 +3,6 @@ from __future__ import annotations
 
 # system imports --------------------------------------------------------------------- #
 import math
-import operator
 
 # vector class ----------------------------------------------------------------------- #
 class Vector:
@@ -51,14 +50,8 @@ class Vector:
     def __trunc__(self) -> Vector:
         return Vector(math.trunc(self.x), math.trunc(self.y))
 
-    def __pos__(self) -> Vector:
-        return Vector(operator.pos(self.x), operator.pos(self.y))
-
     def __neg__(self) -> Vector:
-        return Vector(operator.neg(self.x), operator.neg(self.y))
-
-    def __invert__(self) -> Vector:
-        return Vector(~self.x, ~self.y)
+        return Vector(-self.x, -self.y)
 
     # normal arithmetic operations --------------------------------------------------- #
     def __add__(self, other: float | int | Vector) -> Vector:
@@ -243,12 +236,6 @@ class Vector:
         return result_1, result_2
 
     # type conversion operations ----------------------------------------------------- #
-    def __float__(self) -> Vector:
-        return Vector(float(self.x), float(self.y))
-
-    def __int__(self) -> Vector:
-        return Vector(int(self.x), int(self.y))
-
     def __str__(self) -> str:
         return f"Vector({self.x}, {self.y})"
 
