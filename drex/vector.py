@@ -56,7 +56,9 @@ class Vector:
     # normal arithmetic operations --------------------------------------------------- #
     def __add__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[a + other for a in self])
@@ -67,7 +69,9 @@ class Vector:
 
     def __sub__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[a - other for a in self])
@@ -78,7 +82,9 @@ class Vector:
 
     def __mul__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[a * other for a in self])
@@ -89,7 +95,9 @@ class Vector:
 
     def __truediv__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[a / other for a in self])
@@ -100,7 +108,9 @@ class Vector:
 
     def __floordiv__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[a // other for a in self])
@@ -111,7 +121,9 @@ class Vector:
 
     def __pow__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[a**other for a in self])
@@ -122,7 +134,9 @@ class Vector:
 
     def __mod__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[a % other for a in self])
@@ -133,7 +147,9 @@ class Vector:
 
     def __divmod__(self, other: float | int | Vector) -> list:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result_1 = Vector(*[divmod(a, other)[0] for a in self])
@@ -147,7 +163,9 @@ class Vector:
     # reflected arithmetic operations ------------------------------------------------ #
     def __radd__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[other + a for a in self])
@@ -158,7 +176,9 @@ class Vector:
 
     def __rsub__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[other - a for a in self])
@@ -169,7 +189,9 @@ class Vector:
 
     def __rmul__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[other * a for a in self])
@@ -180,7 +202,9 @@ class Vector:
 
     def __rtruediv__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[other / a for a in self])
@@ -191,7 +215,9 @@ class Vector:
 
     def __rfloordiv__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[other // a for a in self])
@@ -202,7 +228,9 @@ class Vector:
 
     def __rpow__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[other**a for a in self])
@@ -213,7 +241,9 @@ class Vector:
 
     def __rmod__(self, other: float | int | Vector) -> Vector:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result = Vector(*[other % a for a in self])
@@ -224,7 +254,9 @@ class Vector:
 
     def __rdivmod__(self, other: float | int | Vector) -> list:
         if type(other) not in (float, int, Vector):
-            raise TypeError("'other' must be of type 'float', 'int', or 'Vector'")
+            raise TypeError(
+                f"'other' must be of type 'float', 'int', or 'Vector', not {type(other)}"
+            )
 
         if type(other) != Vector:
             result_1 = Vector(*[divmod(other, a)[0] for a in self])
@@ -255,7 +287,7 @@ class Vector:
     @x.setter
     def x(self, x: float | int) -> None:
         if type(x) not in (float, int):
-            raise TypeError("'x' must be of type 'float' or 'int'")
+            raise TypeError(f"'x' must be of type 'float' or 'int', not {type(x)}")
 
         if type(x) == int:
             x = float(x)
@@ -272,7 +304,7 @@ class Vector:
     @y.setter
     def y(self, y: float | int) -> None:
         if type(y) not in (float, int):
-            raise TypeError("'y' must be of type 'float' or 'int'")
+            raise TypeError(f"'y' must be of type 'float' or 'int', not {type(y)}")
 
         if type(y) == int:
             y = float(y)
@@ -347,7 +379,7 @@ class Vector:
         """
 
         if type(other) != Vector:
-            raise TypeError("'other' must be of type 'Vector'")
+            raise TypeError(f"'other' must be of type 'Vector', not {type(other)}")
 
         return self.angle() - other.angle()
 
@@ -371,10 +403,10 @@ class Vector:
         """
 
         if type(x) != Vector:
-            raise TypeError("'x' must be of type 'Vector'")
+            raise TypeError(f"'x' must be of type 'Vector', not {type(x)}")
 
         if type(y) != Vector:
-            raise TypeError("'y' must be of type 'Vector'")
+            raise TypeError(f"'y' must be of type 'Vector', not {type(y)}")
 
         return Vector(self.dot(x) / x.length_sqrd(), self.dot(y) / y.length_sqrd())
 
@@ -394,7 +426,7 @@ class Vector:
         """
 
         if type(other) != Vector:
-            raise TypeError("'other' must be of type 'Vector'")
+            raise TypeError(f"'other' must be of type 'Vector', not {type(other)}")
 
         return self.x * other.y - self.y * other.x
 
@@ -431,7 +463,7 @@ class Vector:
         """
 
         if type(other) != Vector:
-            raise TypeError("'other' must be of type 'Vector'")
+            raise TypeError(f"'other' must be of type 'Vector', not {type(other)}")
 
         return (self.x - other.x) ** 2 + (self.y - other.y) ** 2
 
@@ -451,7 +483,7 @@ class Vector:
         """
 
         if type(other) != Vector:
-            raise TypeError("'other' must be of type 'Vector'")
+            raise TypeError(f"'other' must be of type 'Vector', not {type(other)}")
 
         return self.x * other.x + self.y * other.y
 
@@ -471,10 +503,12 @@ class Vector:
         """
 
         if type(other) != Vector:
-            raise TypeError("'other' must be of type 'Vector'")
+            raise TypeError(f"'other' must be of type 'Vector', not {type(other)}")
 
         if type(i_range) not in (float, int):
-            raise TypeError("'i_range' must be of type 'float' or 'int'")
+            raise TypeError(
+                f"'i_range' must be of type 'float' or 'int', not {type(i_range)}"
+            )
 
         return Vector(
             self.x + (other.x - self.x) * i_range, self.y + (other.y - self.y) * i_range
@@ -552,7 +586,7 @@ class Vector:
         """
 
         if type(other) != Vector:
-            raise TypeError("'other' must be of type 'Vector'")
+            raise TypeError(f"'other' must be of type 'Vector', not {type(other)}")
 
         return (self.dot(other) / other.length_sqrd()) * other
 
@@ -575,11 +609,13 @@ class Vector:
         """
 
         if type(angle) not in (float, int):
-            raise TypeError("'angle' must be of type 'float' or 'int'")
+            raise TypeError(
+                f"'angle' must be of type 'float' or 'int', not {type(angle)}"
+            )
 
         if point != None:
             if type(point) != Vector:
-                raise TypeError("'point' must be of type 'Vector'")
+                raise TypeError(f"'point' must be of type 'Vector', not {type(point)}")
         else:
             point = Vector.zero()
 
@@ -609,7 +645,9 @@ class Vector:
         """
 
         if type(length) not in (float, int):
-            raise TypeError("'length' must be of type 'float' or 'int'")
+            raise TypeError(
+                f"'length' must be of type 'float' or 'int', not {type(length)}"
+            )
 
         if type(length) != float:
             length = float(length)
@@ -633,7 +671,7 @@ class Vector:
         """
 
         if type(value) != int:
-            raise TypeError("'value' must be of type 'int'")
+            raise TypeError(f"'value' must be of type 'int', not {type(value)}")
 
         return Vector(
             math.floor(self.x * 10**value + 0.5) / 10**value,
