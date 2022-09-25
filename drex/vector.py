@@ -260,6 +260,9 @@ class Vector:
         if type(x) == int:
             x = float(x)
 
+        if x == -0.0:
+            x = 0.0
+
         self.__x = x
 
     @property
@@ -273,6 +276,9 @@ class Vector:
 
         if type(y) == int:
             y = float(y)
+
+        if y == -0.0:
+            y = 0.0
 
         self.__y = y
 
