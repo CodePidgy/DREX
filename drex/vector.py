@@ -6,6 +6,9 @@ import math
 
 # vector class ----------------------------------------------------------------------- #
 class Vector:
+    # class constants ---------------------------------------------------------------- #
+    ACCURACY = 5
+
     # initialisation ----------------------------------------------------------------- #
     def __init__(self, x: float | int, y: float | int) -> None:
         self.x = x
@@ -126,9 +129,9 @@ class Vector:
             )
 
         if type(other) != Vector:
-            result = Vector(*[a**other for a in self])
+            result = Vector(*[a ** other for a in self])
         else:
-            result = Vector(*[a**b for a, b in zip(self, other)])
+            result = Vector(*[a ** b for a, b in zip(self, other)])
 
         return result
 
@@ -295,7 +298,7 @@ class Vector:
         if x == -0.0:
             x = 0.0
 
-        self.__x = x
+        self.__x = round(x, self.ACCURACY)
 
     @property
     def y(self) -> float:
@@ -312,7 +315,7 @@ class Vector:
         if y == -0.0:
             y = 0.0
 
-        self.__y = y
+        self.__y = round(y, self.ACCURACY)
 
     # static methods ----------------------------------------------------------------- #
     @staticmethod
@@ -361,7 +364,7 @@ class Vector:
             45.0
         """
 
-        return math.degrees(math.atan2(self.y, self.x))
+        return round(math.degrees(math.atan2(self.y, self.x)), self.ACCURACY)
 
     def angle_btwn(self, other: Vector) -> float:
         """
@@ -381,7 +384,11 @@ class Vector:
         if type(other) != Vector:
             raise TypeError(f"'other' must be of type 'Vector', not {type(other)}")
 
-        return self.angle() - other.angle()
+        return round(
+            math.degrees(math.atan2(self.y, self.x))
+            - math.degrees(math.atan2(other.y, other.x)),
+            self.ACCURACY,
+        )
 
     def basis(self, x: Vector, y: Vector) -> Vector:
         """
@@ -445,7 +452,7 @@ class Vector:
             2.0
         """
 
-        return math.sqrt(self.dist_sqrd(other))
+        return round(math.sqrt((self.x - other.x) ** 2 + (self.y - other.y) ** 2), self.ACCURACY)
 
     def dist_sqrd(self, other) -> float:
         """
@@ -465,7 +472,7 @@ class Vector:
         if type(other) != Vector:
             raise TypeError(f"'other' must be of type 'Vector', not {type(other)}")
 
-        return (self.x - other.x) ** 2 + (self.y - other.y) ** 2
+        return round((self.x - other.x) ** 2 + (self.y - other.y) ** 2, self.ACCURACY)
 
     def dot(self, other: Vector) -> float:
         """
@@ -485,7 +492,7 @@ class Vector:
         if type(other) != Vector:
             raise TypeError(f"'other' must be of type 'Vector', not {type(other)}")
 
-        return self.x * other.x + self.y * other.y
+        return round(self.x * other.x + self.y * other.y, self.ACCURACY)
 
     def lerp(self, other: Vector, i_range: float | int) -> Vector:
         """
@@ -510,6 +517,9 @@ class Vector:
                 f"'i_range' must be of type 'float' or 'int', not {type(i_range)}"
             )
 
+        if i_range > 1.0:
+            raise Exception("'i_range' must be >= 0 and <= 1")
+
         return Vector(
             self.x + (other.x - self.x) * i_range, self.y + (other.y - self.y) * i_range
         )
@@ -526,7 +536,7 @@ class Vector:
             2.0
         """
 
-        return math.sqrt(self.length_sqrd())
+        return round(math.sqrt(self.x ** 2 + self.y ** 2), self.ACCURACY)
 
     def length_sqrd(self) -> float:
         """
@@ -540,9 +550,9 @@ class Vector:
             4.0
         """
 
-        return self.x**2 + self.y**2
+        return round(self.x ** 2 + self.y ** 2, self.ACCURACY)
 
-    def normalise(self) -> float:
+    def normalise(self) -> Vector:
         """
         Returns the normalised vector.
 
@@ -568,7 +578,7 @@ class Vector:
             Vector(-1.0, 0.0)
         """
 
-        return Vector(-self.y if self.y != 0.0 else 0.0, self.x)
+        return Vector(-self.y, self.x)
 
     def project(self, other: Vector) -> Vector:
         """
@@ -625,8 +635,8 @@ class Vector:
         sin = math.sin(angle)
 
         return Vector(
-            round(((self.x - point.x) * cos - (self.y - point.y) * sin) + point.x, 10),
-            round(((self.x - point.x) * sin + (self.y - point.y) * cos) + point.y, 10),
+            ((self.x - point.x) * cos - (self.y - point.y) * sin) + point.x,
+            ((self.x - point.x) * sin + (self.y - point.y) * cos) + point.y,
         )
 
     def scale(self, length: float | int) -> Vector:
