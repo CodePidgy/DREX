@@ -557,7 +557,7 @@ class Vector:
 
         return Vector(self.x * length / self.length(), self.y * length / self.length())
 
-    def snap(self, value: int) -> Vector:
+    def snap(self, value: int | float) -> Vector:
         """
         Returns the vector with `x` and `y` snapped to the nearest multiple of
         `value`.
@@ -573,10 +573,7 @@ class Vector:
             Vector(10, 0)
         """
 
-        if type(value) != int:
-            raise TypeError(f"'value' must be of type 'int', not {type(value)}")
+        if type(value) not in (float, int):
+            raise TypeError(f"'value' must be of type 'float', or 'int', not {type(value)}")
 
-        return Vector(
-            math.floor(self.x * 10**value + 0.5) / 10**value,
-            math.floor(self.y * 10**value + 0.5) / 10**value,
-        )
+        return Vector(value * round(self.x / value), value * round(self.y / value))
