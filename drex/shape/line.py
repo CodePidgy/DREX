@@ -3,7 +3,6 @@ from __future__ import annotations
 
 # system imports --------------------------------------------------------------------- #
 import math
-from typing import Union
 
 # third-pary imports ----------------------------------------------------------------- #
 import pygame
@@ -14,22 +13,35 @@ from ..vector import Vector
 # line class ------------------------------------------------------------------------- #
 class Line:
     # initialisation ----------------------------------------------------------------- #
-    def __init__(self, start: Vector, end: Vector, width: int = 1) -> None:
-        self.end = end
+    def __init__(
+        self,
+        start: Vector,
+        end: Vector,
+        width: int = 1,
+        colour: list = [255, 255, 255, 255],
+    ) -> None:
         self.start = start
+        self.end = end
         self.width = width
+        self.colour = colour
 
     # properties --------------------------------------------------------------------- #
     @property
-    def end(self) -> Vector:
-        return self.__end
+    def colour(self) -> list:
+        return self.__colour
 
-    @end.setter
-    def end(self, end: Vector) -> None:
-        if type(end) != Vector:
-            raise TypeError("'end' must be of type 'Vector'")
+    @colour.setter
+    def colour(self, colour: list) -> None:
+        if type(colour) not in [list, tuple]:
+            raise TypeError("'colour' must be of type 'list' or 'tuple'")
 
-        self.__end = end
+        if len(colour) > 4 or len(colour) < 3:
+            raise Exception("'colour' must have 3 or 4 items")
+
+        if len(colour) == 3:
+            colour.append(255)
+
+        self.__colour = colour
 
     @property
     def start(self) -> Vector:
@@ -38,9 +50,20 @@ class Line:
     @start.setter
     def start(self, start: Vector) -> None:
         if type(start) != Vector:
-            raise TypeError("'start' must be of type 'Vector'")
+            raise TypeError(f"'start' must be of type 'Vector', not {type(start)}")
 
         self.__start = start
+
+    @property
+    def end(self) -> Vector:
+        return self.__end
+
+    @end.setter
+    def end(self, end: Vector) -> None:
+        if type(end) != Vector:
+            raise TypeError(f"'end' must be of type 'Vector', not {type(end)}")
+
+        self.__end = end
 
     @property
     def width(self) -> int:
@@ -49,30 +72,26 @@ class Line:
     @width.setter
     def width(self, width: int):
         if type(width) != int:
-            raise TypeError("'width' must be of type 'int'")
+            raise TypeError(f"'width' must be of type 'int', not {type(width)}")
 
         self.__width = width
 
-    # methods ------------------------------------------------------------------------ #
+    # public methods ----------------------------------------------------------------- #
     def angle(self) -> float:
-        return math.degrees(
-            math.atan2(self.end.y - self.start.y, self.end.x - self.start.x)
+        return round(
+            math.degrees(
+                math.atan2(self.end.y - self.start.y, self.end.x - self.start.x)
+            ),
+            Vector.ACCURACY,
         )
 
     def draw(
         self,
         surface,
-        colour: Union[list, tuple] = (255, 255, 255),
         offset: Vector = None,
     ) -> None:
         if type(surface) != type(pygame.Surface((0, 0))):
             raise TypeError("'surface' must be of type 'pygame.Surface'")
-
-        if type(colour) not in (list, tuple):
-            raise TypeError("'colour' must be of type 'list' or 'tuple'")
-
-        if len(colour) > 4 or len(colour) < 3:
-            raise Exception("'colour' must have 3 or 4 items")
 
         if offset != None:
             if type(offset) != Vector:
@@ -82,14 +101,16 @@ class Line:
 
         pygame.draw.line(
             surface,
-            colour,
+            self.__colour,
             [*self.__start + offset],
             [*self.__end + offset],
             self.__width,
         )
 
     def gradient(self) -> float:
-        return (self.end.y - self.start.y) / (self.end.x - self.start.x)
+        return round(
+            (self.end.y - self.start.y) / (self.end.x - self.start.x), Vector.ACCURACY
+        )
 
     def intersect(self, other: Line) -> bool:
         if type(other) not in (Line, Vector):
@@ -155,10 +176,16 @@ class Line:
         )
 
     def length(self) -> float:
-        return math.sqrt(self.length_sqrd())
+        return round(
+            math.sqrt(abs((self.end.x - self.start.x) + (self.end.y - self.start.y))),
+            Vector.ACCURACY,
+        )
 
     def length_sqrd(self) -> float:
-        return (self.end.x - self.start.x) ** 2 + (self.end.y - self.start.y) ** 2
+        return round(
+            (self.end.x - self.start.x) ** 2 + (self.end.y - self.start.y) ** 2,
+            Vector.ACCURACY,
+        )
 
     def middle(self) -> Vector:
         return (self.start + self.end) / 2
@@ -214,8 +241,8 @@ class Line:
 
         return self.normal(reflect_point).mirror(point)
 
-    def rotate(self, angle: Union[float, int], point: Vector = None) -> Line:
-        if type(angle) not in (float, int):
+    def rotate(self, angle: float | int, point: Vector = None) -> Line:
+        if type(angle) not in [float, int]:
             raise TypeError("'angle' must be of type 'float' or 'int'")
 
         if point != None:
@@ -232,7 +259,7 @@ class Line:
 
     def side(self, point: Vector) -> int:
         if type(point) != Vector:
-            raise TypeError("'point' must be of type 'Vector'")
+            raise TypeError(f"'point' must be of type 'Vector', not {type(point)}")
 
         sort = self.sort_y()
 
