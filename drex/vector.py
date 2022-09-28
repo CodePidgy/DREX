@@ -41,8 +41,13 @@ class Vector:
     def __abs__(self) -> Vector:
         return Vector(abs(self.x), abs(self.y))
 
-    def __round__(self) -> Vector:
-        return Vector(round(self.x), round(self.y))
+    def __round__(self, ndigits: int = 0) -> Vector:
+        if type(ndigits) != int:
+            raise TypeError(
+                f"'ndigits' must be of type 'int', not {type(ndigits)}"
+            )
+
+        return Vector(round(self.x, ndigits), round(self.y, ndigits))
 
     def __ceil__(self) -> Vector:
         return Vector(math.ceil(self.x), math.ceil(self.y))
