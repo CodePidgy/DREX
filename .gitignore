@@ -1,2 +1,5 @@
 # auto-generated files from import drex
 __pycache__/
+
+# auto-generated pytest files
+.pytest_cache/

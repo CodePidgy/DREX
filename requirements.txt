@@ -2,3 +2,4 @@ black==22.8.0
 ipykernel==6.15.3
 pygame==2.1.2
 pylint==2.15.3
+pytest==7.1.3
