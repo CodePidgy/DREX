@@ -230,7 +230,7 @@ class Vector:
         Returns a `Vector` with the value `(1, 1)`
 
         Returns:
-            result (Vector): `Vector` with the value `(1, 1)`
+            result (`Vector`): `Vector` with the value `(1, 1)`
         """
 
         return Vector(1, 1)
@@ -241,7 +241,7 @@ class Vector:
         Returns a `Vector` with the value `(1, 0)`
 
         Returns:
-            result (Vector): `Vector` with the value `(1, 0)`
+            result (`Vector`): `Vector` with the value `(1, 0)`
         """
 
         return Vector(1, 0)
@@ -252,7 +252,7 @@ class Vector:
         Returns a `Vector` with the value `(0, 0)`
 
         Returns:
-            result (Vector): `Vector` with the value `(0, 0)`
+            result (`Vector`): `Vector` with the value `(0, 0)`
         """
 
         return Vector(0, 0)
@@ -260,10 +260,10 @@ class Vector:
     # public methods ----------------------------------------------------------------- #
     def angle(self) -> float:
         """
-        Returns the angle of the vector from `Vector(0, 0)` in degrees.
+        Returns the angle of the `Vector` from `Vector(0, 0)` in degrees
 
         Returns:
-            result (float): The angle of the vector
+            result (`float`): The angle of the vector
 
         Example:
             >>> Vector(1, 1).angle()
@@ -274,13 +274,13 @@ class Vector:
 
     def angle_btwn(self, other: Vector) -> float:
         """
-        Returns the angle between two vectors in degrees.
+        Returns the angle between two `Vector`s in degrees
 
         Args:
-            other (Vector): The other vector
+            other (`Vector`): The other `Vector`
 
         Returns:
-            result (float): The angle between the two vectors
+            result (`float`): The angle between the two `Vector`s
 
         Example:
             >>> Vector(1, 0).angle_btwn(Vector(0, 1))
@@ -298,14 +298,14 @@ class Vector:
 
     def basis(self, x: Vector, y: Vector) -> Vector:
         """
-        Returns the vector in the basis of two vectors.
+        Returns the `Vector` in the basis of two `Vector`s
 
         Args:
-            x (Vector): The x vector
-            y (Vector): The y vector
+            x (`Vector`): The x vector
+            y (`Vector`): The y vector
 
         Returns:
-            result (Vector): The basis vector
+            result (`Vector`): The basis `Vector`
 
         Example:
             >>> Vector(1, 0).basis(Vector(1, 1), Vector(0, 1))
@@ -325,13 +325,13 @@ class Vector:
 
     def cross(self, other: Vector) -> float:
         """
-        Returns the cross product of two vectors.
+        Returns the cross product of two `Vector`s
 
         Args:
-            other (Vector): The other vector
+            other (`Vector`): The other `Vector`
 
         Returns:
-            result (float, int): The cross product of the vectors
+            result (`float`, `int`): The cross product of the `Vector`s
 
         Example:
             >>> Vector(1, 0).cross(Vector(0, 1))
@@ -345,13 +345,13 @@ class Vector:
 
     def dist(self, other: Vector) -> float:
         """
-        Returns the distance between two vectors.
+        Returns the distance between two `Vector`s
 
         Args:
-            other (Vector): The other vector
+            other (`Vector`): The other `Vector`
 
         Returns:
-            result (float): The distance between the vectors
+            result (`float`): The distance between the `Vector`s
 
         Example:
             >>> Vector(0, 0).dist(Vector(2, 0))
@@ -364,13 +364,13 @@ class Vector:
 
     def dist_sqrd(self, other) -> float:
         """
-        Returns the squared distance between two vectors.
+        Returns the squared distance between two `Vector`s
 
         Args:
-            other (Vector): The other vector
+            other (`Vector`): The other `Vector`
 
         Returns:
-            result (float): The squared distance between the vectors
+            result (`float`): The squared distance between the `Vector`s
 
         Example:
             >>> Vector(0, 0).dist(Vector(2, 0))
@@ -384,13 +384,13 @@ class Vector:
 
     def dot(self, other: Vector) -> float:
         """
-        Returns the dot product of two vectors.
+        Returns the dot product of two `Vector`s
 
         Args:
-            other (Vector): The other vector
+            other (`Vector`): The other `Vector`
 
         Returns:
-            result (float): The dot product of the vectors
+            result (`float`): The dot product of the `Vector`s
 
         Example:
             >>> Vector(1, 0).dot(Vector(0, 1))
@@ -404,13 +404,13 @@ class Vector:
 
     def lerp(self, other: Vector, i_range: float | int) -> Vector:
         """
-        Returns the linear interpolation between two vectors.
+        Returns the linear interpolation between two `Vector`s
 
         Args:
-            other (Vector): The other vector
+            other (`Vector`): The other `Vector`
 
         Returns:
-            result (Vector): The linear interpolation between the vectors
+            result (`Vector`): The linear interpolation between the `Vector`s
 
         Example:
             >>> Vector(0, 0).lerp(Vector(2, 0), 0.5)
@@ -434,10 +434,10 @@ class Vector:
 
     def length(self) -> float:
         """
-        Returns the length (magnitude) of the vector.
+        Returns the length (magnitude) of the `Vector`
 
         Returns:
-            result (float): The length (magnitude) of the vector
+            result (`float`): The length (magnitude) of the `Vector`
 
         Example:
             >>> Vector(2, 0).length()
@@ -448,10 +448,10 @@ class Vector:
 
     def length_sqrd(self) -> float:
         """
-        Returns the squared length (magnitude) of the vector.
+        Returns the squared length (magnitude) of the `Vector`
 
         Returns:
-            result (float): The squared length (magnitude) of the vector
+            result (`float`): The squared length (magnitude) of the `Vector`
 
         Example:
             >>> Vector(2, 0).length_sqrd()
@@ -462,10 +462,10 @@ class Vector:
 
     def normalise(self) -> Vector:
         """
-        Returns the normalised vector.
+        Returns the normalised `Vector`
 
         Returns:
-            result (Vector): The normalised vector
+            result (`Vector`): The normalised `Vector`
 
         Example:
             >>> Vector(5, 0).normalise()
@@ -476,10 +476,10 @@ class Vector:
 
     def perp(self) -> Vector:
         """
-        Return the perpendicular vector.
+        Return the perpendicular `Vector`
 
         Returns:
-            result (Vector): The perpendicular vector
+            result (`Vector`): The perpendicular `Vector`
 
         Example:
             >>> Vector(0, 1).perp()
@@ -490,13 +490,13 @@ class Vector:
 
     def project(self, other: Vector) -> Vector:
         """
-        Returns the projection of the vector onto another vector.
+        Returns the projection of the `Vector` onto another `Vector`
 
         Args:
-            other (Vector): The other vector
+            other (`Vector`): The other `Vector`
 
         Returns:
-            result (Vector): The projected vector
+            result (`Vector`): The projected `Vector`
 
         Example:
             >>> Vector(1, 1).project(Vector(2, 0))
@@ -506,18 +506,18 @@ class Vector:
         if type(other) != Vector:
             raise TypeError(f"'other' must be of type 'Vector', not {type(other)}")
 
-        return (self.dot(other) / other.length_sqrd()) * other
+        return other * (self.dot(other) / other.length_sqrd())
 
     def rotate(self, angle: float | int, point: Vector = None) -> Vector:
         """
-        Returns the vector rotated vector around `point` or `Vector(0, 0)`.
+        Returns the `Vector` rotated `Vector` around `point` or `Vector(0, 0)`
 
         Args:
-            angle (float, int): The angle to rotate the vector by in degrees
-            point (Vector): optional; The point to rotate the vector around
+            angle (`float`, `int`): The angle to rotate the `Vector` by in degrees
+            point (`Vector`, optional): The point to rotate the `Vector` around
 
         Returns:
-            result (Vector): The rotated vector
+            result (`Vector`): The rotated `Vector`
 
         Example:
             >>> Vector(0, 1).rotate(-90)
@@ -549,13 +549,13 @@ class Vector:
 
     def scale(self, length: float | int) -> Vector:
         """
-        Returns the vector scaled to a certain `length`.
+        Returns the `Vector` scaled to a certain `length`
 
         Args:
-            length (float | int): The length to scale the vector to
+            length (`float`, `int`): The length to scale the `Vector` to
 
         Returns:
-            result (Vector): The scaled vector
+            result (`Vector`): The scaled `Vector`
 
         Example:
             >>> Vector(1, 0).scale(5)
@@ -574,14 +574,13 @@ class Vector:
 
     def snap(self, value: int | float) -> Vector:
         """
-        Returns the vector with `x` and `y` snapped to the nearest multiple of
-        `value`.
+        Returns the `Vector` with `x` and `y` snapped to the nearest multiple of `value`
 
         Args:
-            value (int): The value to snap the vector to
+            value (`int`): The value to snap the `Vector` to
 
         Returns:
-            result (Vector): The snapped vector
+            result (`Vector`): The snapped `Vector`
 
         Example:
             >>> Vector(7, 1).snap(10)
