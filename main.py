@@ -6,6 +6,7 @@ import pygame
 
 # local imports ---------------------------------------------------------------------- #
 from drex import Vector
+from drex.shape import Line
 
 # constants -------------------------------------------------------------------------- #
 DISPLAY_SIZE = [100, 100]
@@ -33,7 +34,8 @@ while True:
     display.fill([0, 0, 0])
 
     # logic -------------------------------------------------------------------------- #
-    fps_text = font.render(f"FPS: {int(clock.get_fps())}", False, [255, 255, 255])
+    fps = int(clock.get_fps())
+    fps_text = font.render(f"FPS: {fps}", False, [255, 255, 255])
 
     # render ------------------------------------------------------------------------- #
 
